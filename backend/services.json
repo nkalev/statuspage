@@ -20,7 +20,7 @@
                 "probe_config": {
                     "method": "POST",
                     "headers": {
-                        "Authorization": "Basic c2FuYmFzZTozOWZjMzM5NmI1NWMzMDUwMmEyYzkyMTg3YmM5ZjUzZjBkYzY0ZTgwNDllMjQ1ZTJlMmYzYjc1Njc0MTc1YjQxZTcwYTQ4NTRlOTdmODEwZg==",
+                        "Authorization": "Basic EXAMPLEBASE64",
                         "Content-Type": "application/json",
                         "User-Agent": "Santiment Statuspage"
                     },
@@ -38,7 +38,7 @@
                 "probe_config": {
                     "method": "POST",
                     "headers": {
-                        "Authorization": "Basic c2FuYmFzZTozOWZjMzM5NmI1NWMzMDUwMmEyYzkyMTg3YmM5ZjUzZjBkYzY0ZTgwNDllMjQ1ZTJlMmYzYjc1Njc0MTc1YjQxZTcwYTQ4NTRlOTdmODEwZg==",
+                        "Authorization": "Basic EXAMPLEBASE64",
                         "Content-Type": "application/json",
                         "User-Agent": "Santiment Statuspage"
                     },
