@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: santiment-status
+data:
+  services.json: |
+    [
+      {
+        "id": "api",
+        "name": "Santiment API",
+        "services": [
+          {
+            "id": "api-general",
+            "name": "General Availability (api.santiment.net)",
+            "url": "https://api.santiment.net",
+            "probe_config": {
+              "headers": {
+                "User-Agent": "SantimentStatusProbe/1.0"
+              }
+            }
+          },
+          {
+            "id": "api-graphiql-50",
+            "name": "GraphQL Query (1-50 items)",
+            "url": "https://api.santiment.net/graphiql",
+            "probe_config": {
+              "method": "POST",
+              "headers": {
+                "Content-Type": "application/json",
+                "User-Agent": "SantimentStatusProbe/1.0",
+                "Authorization": "Basic YXBpLXBsYXlncm91bmQ6YXBpLXBsYXlncm91bmQ="
+              },
+              "body": {
+                "query": "{ projects(page: 1, pageSize: 50) { slug name priceUsd } }"
+              }
+            }
+          }
+          // ... (Add full content from your local services.json)
+        ]
+      },
+      {
+        "id": "web-apps",
+        "name": "Web Applications",
+        "services": [
+           {
+            "id": "sanbase",
+            "name": "Sanbase (app.santiment.net)",
+            "url": "https://app.santiment.net"
+           },
+           { "id": "sanr", "name": "SanR (sanr.app)", "url": "https://sanr.app" },
+           { "id": "academy", "name": "Academy", "url": "https://academy.santiment.net" },
+           { "id": "www", "name": "Website", "url": "https://santiment.net" }
+        ]
+      }
+    ]

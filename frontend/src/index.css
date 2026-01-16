@@ -1,0 +1,772 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== CSS Variables ===== */
+:root {
+    --bg-primary: #181B2B;
+    --bg-secondary: #1e2235;
+    --bg-card: #242942;
+    --bg-card-hover: #2a3150;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent-success: #22c55e;
+    --accent-warning: #eab308;
+    --accent-danger: #ef4444;
+    --accent-info: #14b8a6;
+    --accent-maintenance: #3b82f6;
+    --border-color: #334155;
+    --glow-color: rgba(20, 184, 166, 0.15);
+}
+
+/* ===== Base Styles ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ===== Status Page Layout ===== */
+.status-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background:
+        radial-gradient(ellipse at top center, var(--glow-color) 0%, transparent 50%),
+        var(--bg-primary);
+}
+
+.loading-screen,
+.error-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+}
+
+/* ===== Header ===== */
+.header {
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+    background: rgba(24, 27, 43, 0.95);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--text-primary);
+}
+
+.btn-subscribe-header {
+    background: var(--accent-info);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-subscribe-header:hover {
+    background: #0d9488;
+    transform: translateY(-1px);
+}
+
+/* ===== Status Banner ===== */
+.status-banner {
+    padding: 1rem 2rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.025em;
+}
+
+.banner-operational {
+    background: linear-gradient(90deg, #16a34a, #22c55e);
+    color: white;
+}
+
+.banner-degraded {
+    background: linear-gradient(90deg, #ca8a04, #eab308);
+    color: black;
+}
+
+.banner-outage {
+    background: linear-gradient(90deg, #dc2626, #ef4444);
+    color: white;
+}
+
+.banner-maintenance {
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    color: white;
+}
+
+/* ===== Main Content ===== */
+.main-content {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+}
+
+/* ===== Maintenance Alert ===== */
+.maintenance-alerts {
+    margin-bottom: 2rem;
+}
+
+.maintenance-alert {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.maintenance-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.info-icon {
+    color: var(--accent-info);
+}
+
+.maintenance-title {
+    font-weight: 600;
+    color: var(--accent-info);
+}
+
+.maintenance-schedule {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.maintenance-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* ===== Service Group ===== */
+.service-group {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.group-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-card);
+}
+
+.services-list {
+    padding: 0;
+}
+
+/* ===== Service Row ===== */
+.service-row {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.service-row:last-child {
+    border-bottom: none;
+}
+
+.service-row-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.service-row-header:hover {
+    background: var(--bg-card-hover);
+}
+
+.service-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.status-icon {
+    flex-shrink: 0;
+}
+
+.status-icon.operational {
+    color: var(--accent-success);
+}
+
+.status-icon.degraded {
+    color: var(--accent-warning);
+}
+
+.status-icon.outage {
+    color: var(--accent-danger);
+}
+
+.status-icon.maintenance {
+    color: var(--accent-maintenance);
+}
+
+.service-name {
+    font-weight: 500;
+}
+
+.service-status-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Mini Uptime Bar (in header) */
+.mini-uptime {
+    display: none;
+    gap: 2px;
+}
+
+@media (min-width: 768px) {
+    .mini-uptime {
+        display: flex;
+    }
+}
+
+.mini-day {
+    width: 3px;
+    height: 20px;
+    border-radius: 1px;
+}
+
+.mini-day.operational {
+    background: var(--accent-success);
+    opacity: 0.6;
+}
+
+.mini-day.issue {
+    background: var(--accent-danger);
+    opacity: 0.8;
+}
+
+/* Status Label */
+.status-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    min-width: 100px;
+    text-align: center;
+}
+
+.status-label.operational {
+    color: var(--accent-success);
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.status-label.degraded {
+    color: var(--accent-warning);
+    background: rgba(234, 179, 8, 0.15);
+    border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.status-label.outage {
+    color: var(--accent-danger);
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.status-label.maintenance {
+    color: var(--accent-maintenance);
+    background: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* ===== Service Row Details (Expanded) ===== */
+.service-row-details {
+    padding: 1rem 1.5rem 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid var(--border-color);
+    animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.incident-info {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(239, 68, 68, 0.1);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent-danger);
+}
+
+.incident-type {
+    font-weight: 600;
+    color: var(--accent-danger);
+    margin-bottom: 0.25rem;
+}
+
+.incident-meta {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.incident-detail {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Region Status */
+.region-status {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem 0;
+}
+
+.region-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.region-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.region-dot.operational {
+    background: var(--accent-success);
+}
+
+.region-dot.degraded {
+    background: var(--accent-warning);
+}
+
+.region-dot.outage {
+    background: var(--accent-danger);
+}
+
+/* Uptime Bar */
+.uptime-bar-container {
+    margin-top: 0.5rem;
+}
+
+.uptime-bar-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.625rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.uptime-bar {
+    display: flex;
+    gap: 2px;
+    height: 24px;
+}
+
+.uptime-day {
+    flex: 1;
+    border-radius: 2px;
+    min-width: 4px;
+    transition: transform 0.1s;
+}
+
+.uptime-day:hover {
+    transform: scaleY(1.2);
+}
+
+.uptime-day.operational {
+    background: var(--accent-success);
+}
+
+.uptime-day.degraded {
+    background: var(--accent-warning);
+}
+
+.uptime-day.outage {
+    background: var(--accent-danger);
+}
+
+.uptime-day.maintenance {
+    background: var(--accent-maintenance);
+}
+
+.no-incidents {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-style: italic;
+}
+
+/* ===== Past Incidents ===== */
+.past-incidents {
+    margin-top: 2rem;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.no-incidents-message {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.incident-group {
+    margin-bottom: 1.5rem;
+}
+
+.incident-date {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.incident-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.incident-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.incident-status {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.resolved-badge {
+    color: var(--accent-success);
+    font-weight: 500;
+}
+
+/* ===== Footer ===== */
+.footer {
+    border-top: 1px solid var(--border-color);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+/* ===== Modal ===== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    animation: modalIn 0.2s ease-out;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: var(--text-primary);
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-icon {
+    color: var(--accent-info);
+    margin-bottom: 1rem;
+}
+
+.modal-header h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.modal-header p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.subscribe-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.subscribe-form label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.subscribe-form input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.subscribe-form input:focus {
+    outline: none;
+    border-color: var(--accent-info);
+}
+
+.btn-subscribe {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--accent-info);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-subscribe:hover {
+    background: #0d9488;
+}
+
+.btn-subscribe:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.subscribe-success {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.success-icon {
+    color: var(--accent-success);
+    margin-bottom: 1rem;
+}
+
+.subscribe-success p {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.success-detail {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.subscribe-error {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-danger);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: rgba(239, 68, 68, 0.1);
+    border-radius: 4px;
+}
+
+/* ===== Admin Pages ===== */
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: var(--accent-info);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0d9488;
+}
+
+input,
+select,
+textarea {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.75rem;
+    border-radius: 6px;
+    width: 100%;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--accent-info);
+}
+
+/* ===== Incident Alerts ===== */
+.incident-alert {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--accent-danger);
+}
+
+.incident-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent-danger);
+}
+
+.incident-title {
+    font-weight: 600;
+    color: var(--accent-danger);
+}
+
+.incident-status {
+    color: var(--accent-danger);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-left: 0.5rem;
+}
+
+.incident-meta {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.incident-description {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}

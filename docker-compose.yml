@@ -1,0 +1,73 @@
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - API_SECRET=my-production-secret-123
+      - ADMIN_SECRET=admin-secret-secure
+      - DATABASE_URL=postgres://santiment:securepass@postgres:5432/statusdb
+    restart: always
+    volumes:
+      - ./services.json:/app/services.json
+    depends_on:
+      - postgres
+    networks:
+      - santiment-net
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=santiment
+      - POSTGRES_PASSWORD=securepass
+      - POSTGRES_DB=statusdb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - santiment-net
+
+  probe-us:
+    build: ./backend
+    environment:
+      - PROBE_MODE=true
+      - REGION=US-East
+      - CENTRAL_API_URL=http://backend:3000
+      - API_SECRET=my-production-secret-123
+      - NODE_OPTIONS=--max-http-header-size=32768
+    depends_on:
+      - backend
+    networks:
+      - santiment-net
+
+  probe-eu:
+    build: ./backend
+    environment:
+      - PROBE_MODE=true
+      - REGION=EU-West
+      - CENTRAL_API_URL=http://backend:3000
+      - API_SECRET=my-production-secret-123
+      - NODE_OPTIONS=--max-http-header-size=32768
+    depends_on:
+      - backend
+    networks:
+      - santiment-net
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
+    networks:
+      - santiment-net
+
+networks:
+  santiment-net:
+    driver: bridge
+
+volumes:
+  pgdata:

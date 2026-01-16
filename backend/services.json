@@ -1,0 +1,100 @@
+[
+    {
+        "id": "api",
+        "name": "Santiment API",
+        "services": [
+            {
+                "id": "api-general",
+                "name": "General Availability (api.santiment.net)",
+                "url": "https://api.santiment.net",
+                "probe_config": {
+                    "headers": {
+                        "User-Agent": "Santiment Statuspage"
+                    }
+                }
+            },
+            {
+                "id": "api-graphiql-50",
+                "name": "GraphQL Query (1-50 items)",
+                "url": "https://api.santiment.net/graphiql",
+                "probe_config": {
+                    "method": "POST",
+                    "headers": {
+                        "Authorization": "Basic c2FuYmFzZTozOWZjMzM5NmI1NWMzMDUwMmEyYzkyMTg3YmM5ZjUzZjBkYzY0ZTgwNDllMjQ1ZTJlMmYzYjc1Njc0MTc1YjQxZTcwYTQ4NTRlOTdmODEwZg==",
+                        "Content-Type": "application/json",
+                        "User-Agent": "Santiment Statuspage"
+                    },
+                    "body": {
+                        "query": "{  allProjects(page: 1, pageSize: 50) {\n    ...generalData\n    ...project\n    ...blockchainData\n    __typename\n  }\n}\nfragment generalData on Project {\n  id\n  name\n  description\n  ticker\n  __typename\n}\nfragment blockchainData on Project{\n  averageDailyActiveAddresses(\n    from: \"2018-02-05T14:00:00.000Z\",\n    to: \"2018-03-05T14:00:00.000Z\")\n}\nfragment project on Project {\n  rank\n  marketSegment\n  priceUsd\n  percentChange24h\n  volumeUsd\n  volumeChange24h\n  ethSpent\n  slug\n  averageDevActivity\n  mainContractAddress\n  marketcapUsd \n  __typename\n}",
+                        "variables": null,
+                        "operationName": null
+                    }
+                }
+            },
+            {
+                "id": "api-graphiql-100",
+                "name": "GraphQL Query (1-100 items)",
+                "url": "https://api.santiment.net/graphiql",
+                "probe_config": {
+                    "method": "POST",
+                    "headers": {
+                        "Authorization": "Basic c2FuYmFzZTozOWZjMzM5NmI1NWMzMDUwMmEyYzkyMTg3YmM5ZjUzZjBkYzY0ZTgwNDllMjQ1ZTJlMmYzYjc1Njc0MTc1YjQxZTcwYTQ4NTRlOTdmODEwZg==",
+                        "Content-Type": "application/json",
+                        "User-Agent": "Santiment Statuspage"
+                    },
+                    "body": {
+                        "query": "{  allProjects(page: 1, pageSize: 100) {\n    ...generalData\n    ...project\n    ...blockchainData\n    __typename\n  }\n}\nfragment generalData on Project {\n  id\n  name\n  description\n  ticker\n  __typename\n}\nfragment blockchainData on Project{\n  averageDailyActiveAddresses(\n    from: \"2018-02-05T14:00:00.000Z\",\n    to: \"2018-03-05T14:00:00.000Z\")\n}\nfragment project on Project {\n  rank\n  marketSegment\n  priceUsd\n  percentChange24h\n  volumeUsd\n  volumeChange24h\n  ethSpent\n  slug\n  averageDevActivity\n  mainContractAddress\n  marketcapUsd \n   __typename\n}",
+                        "variables": null,
+                        "operationName": null
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "id": "web-apps",
+        "name": "Web Applications",
+        "services": [
+            {
+                "id": "sanbase",
+                "name": "Sanbase (app.santiment.net)",
+                "url": "https://app.santiment.net",
+                "probe_config": {
+                    "headers": {
+                        "User-Agent": "Santiment Statuspage"
+                    }
+                }
+            },
+            {
+                "id": "sanr",
+                "name": "SanR (sanr.app)",
+                "url": "https://sanr.app",
+                "probe_config": {
+                    "headers": {
+                        "User-Agent": "Santiment Statuspage"
+                    }
+                }
+            },
+            {
+                "id": "academy",
+                "name": "Academy (academy.santiment.net)",
+                "url": "https://academy.santiment.net",
+                "probe_config": {
+                    "headers": {
+                        "User-Agent": "Santiment Statuspage"
+                    }
+                }
+            },
+            {
+                "id": "www",
+                "name": "Website (santiment.net)",
+                "url": "https://santiment.net",
+                "probe_config": {
+                    "headers": {
+                        "User-Agent": "Santiment Statuspage"
+                    }
+                }
+            }
+        ]
+    }
+]
